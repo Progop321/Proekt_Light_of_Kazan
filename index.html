@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор электричества</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/Favicon.png" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rajdhani:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container">
+      <nav class="header__nav">
+        <img class="logo" src="images/Group 9.svg" alt="Logo">
+        <ul class="header__list">
+          <li>
+            <a class="header__list-item" href="#">About us</a>
+          </li>
+          <li>
+            <a class="header__list-item" href="#">Info</a>
+          </li>
+          <li>
+            <a class="header__list-item" href="#">Contact</a>
+          </li>
+        </ul>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="promo-block">
+      <h1 class="promo-title">
+        Цена забытого
+        света
+      </h1>
+      <p class="promo-text">Узнайте, сколько на самом деле потребляют ваши домашние приборы. Обычная привычка выключать свет вовремя или вовремя сделанный переход на LED-лампы могут сэкономить вам несколько тысяч рублей в год.</p>
+      <!-- КНОПКА ПОД ТЕКСТОМ -->
+      <button class="main-cta-btn" onclick="toggleCalc()">Рассчитать стоимость</button>
+    </div>
+    <div class="calc-container" id="energyCalc">
+    <h3>Калькулятор расхода энергии</h3>
+
+  <!-- Шаг 1: Выбор типа ламп -->
+  <div class="step">
+    <p class="step-title">1. Тип лампочки:</p>
+    <div class="selector-grid">
+      <button type="button" class="calc-btn bulb-btn active" data-power="60" onclick="selectBulb(this)">Накаливания <small>60 Вт</small></button>
+      <button type="button" class="calc-btn bulb-btn" data-power="15" onclick="selectBulb(this)">Энергосберегательная <small>15 Вт</small></button>
+      <button type="button" class="calc-btn bulb-btn" data-power="8" onclick="selectBulb(this)">Светодиодная LED <small>8 Вт</small></button>
+    </div>
+  </div>
+
+  <!-- Шаг 2: Количество -->
+  <div class="step">
+    <label class="step-title" for="bulb-count">2. Количество лампочек (шт):</label>
+    <input type="number" id="bulb-count" value="1" min="1" oninput="calculate()">
+  </div>
+
+  <!-- Шаг 3: Выбор периода -->
+  <div class="step">
+    <p class="step-title">3. Срок работы:</p>
+    <div class="selector-grid period-grid">
+      <button type="button" class="calc-btn period-btn active" data-hours="1" onclick="selectPeriod(this)">1 час</button>
+      <button type="button" class="calc-btn period-btn" data-hours="24" onclick="selectPeriod(this)">1 день</button>
+      <button type="button" class="calc-btn period-btn" data-hours="720" onclick="selectPeriod(this)">1 месяц</button>
+      <button type="button" class="calc-btn period-btn" data-hours="8760" onclick="selectPeriod(this)">1 год</button>
+    </div>
+  </div>
+
+  <!-- Итоговый блок -->
+  <div class="calc-result">
+    <div class="result-item">Потребление: <strong id="res-kwh">0</strong> кВт·ч</div>
+    <div class="result-item">Стоимость: <strong id="res-cost">0</strong> руб.</div>
+  </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
